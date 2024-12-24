@@ -22,9 +22,8 @@ static void exploit() {
 ![image](https://github.com/hxzinh/pawnyable/blob/main.cpp/LK01/LK01-1/image/Screenshot%202024-12-24%20212200.png)
 
 ### kROP
-- enable SMEP 
+- enable SMEP, nó giống như set NX bit ở userland vậy khi mitigation này được bật kernel sẽ không thể thực thi code ở userland nữa. Nhưng lỗi buffer overflow vẫn còn đó ta có thể leo quyền bằng cách build ROP thực hiện `commit_creds(prepare_kernel_cred(NULL))` như đã là ở trên và trở về user
 - Sau khi ROP có thể trở về user bằng cách đổi các segment register và swap về user hoặc add rsp để kernel chạy tiếp và tự trờ về user space (cần debug và fix thêm, mới chỉ test ở pwn.college)
-
 ### KPTI
 - enable KPTI --> khi còn ở page của kernel giờ sẽ không đọc được dữ liệu từ page của user --> vẫn return được về user nhưng sẽ segfault
 - swapgs_restore_regs_and_return_to_usermode
