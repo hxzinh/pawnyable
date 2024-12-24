@@ -19,8 +19,7 @@ static void exploit() {
     return;
 }
 ```
-[![image](https://hackmd.io/_uploads/rkrU7HOHyx.png)](https://github.com/hxzinh/pawnyable/blob/main.cpp/LK01/LK01-1/image/Screenshot%202024-12-24%20212200.png)
-
+![image](https://github.com/hxzinh/pawnyable/blob/main.cpp/LK01/LK01-1/image/Screenshot%202024-12-24%20212200.png)
 
 ### kROP
 - enable SMEP 
